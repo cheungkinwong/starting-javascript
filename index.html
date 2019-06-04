@@ -98,13 +98,24 @@
             </table>
         </div>
         <script>
-            let n = document.getElementById("name");
-            let p = document.getElementById("pizza");
-            let s = document.getElementById("size");
-            let r = document.getElementById("remarks");     
-            if (n.value > 0 || p.value > 0 || s.value > 0) {
+                 
+            let input = document.querySelector('tr>td>input.form-control');
+            input.addEventListener('keyup', function (e) {
+                if (e.keyCode === 13) {
+                    console.log("hi");
+                    check();
+                }
+            });
+            function check() {
+                let n = document.getElementById("name").value;
+                let p = document.getElementById("pizza").value;
+                let s = document.getElementById("size").value;
+                let r = document.getElementById("remarks");
+                // if (n > 0 && p >  0  && s > 0 ) {
+                    console.log("ho");
                 
-            } 
+            }
+            
 
         </script>
     </div>
