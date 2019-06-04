@@ -51,12 +51,12 @@
         <script>
             let x = document.getElementById('greetingsBox');
             let y = document.querySelector('div.greetingsBoxHolder>h3');
-            if (textvalue = 0) {
-                y.innerHTML = "sorry nothing to show";
-            } 
             x.oninput = () =>  {
                 let textvalue = x.value;
                 y.innerHTML = textvalue;
+                if (textvalue == 0) {
+                y.innerHTML = "sorry nothing to show";
+            } 
             };
         </script>
     </div>
@@ -97,26 +97,52 @@
                 </tbody>
             </table>
         </div>
-        <script>
-                 
-            let input = document.querySelector('tr>td>input.form-control');
-            input.addEventListener('keyup', function (e) {
-                if (e.keyCode === 13) {
-                    console.log("hi");
-                    check();
-                }
-            });
-            function check() {
-                let n = document.getElementById("name").value;
-                let p = document.getElementById("pizza").value;
-                let s = document.getElementById("size").value;
-                let r = document.getElementById("remarks");
-                // if (n > 0 && p >  0  && s > 0 ) {
-                    console.log("ho");
-                
-            }
-            
+        <script> 
+            let form = document.querySelectorAll('tr>td>input.form-control');
 
+
+            form.forEach(nenaam);  
+
+            function nenaam (input){
+                input.addEventListener('keyup', enter)
+            }
+            function enter (e) {
+                if (e.keyCode === 13) {
+                    check();}
+            }
+            function check() {
+                let namev = document.getElementById("name").value;
+                let pizzav = document.getElementById("pizza").value;
+                let sizev = document.getElementById("size").value;
+                if (namev.length > 0 && pizzav.length > 0 && sizev.length > 0 ) {
+                   clone();
+                } else {
+                    Command: toastr["error"]("Please fill in all fields")
+                    toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                    }
+                }
+            };
+             function clone() {
+                console.log(empty);
+                var empty = document.getElementById("emptyRow");
+                var cln = empty.cloneNode(true);
+                document.getElementById("pizzaOrders").appendChild(cln);
+             }
         </script>
     </div>
     <!-- END OF Part 2 -->
