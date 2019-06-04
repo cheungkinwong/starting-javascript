@@ -99,8 +99,6 @@
         </div>
         <script> 
             let form = document.querySelectorAll('tr>td>input.form-control');
-
-
             form.forEach(nenaam);  
 
             function nenaam (input){
@@ -142,7 +140,8 @@
                 var empty = document.getElementById("emptyRow");
                 var cln = empty.cloneNode(true);
                 document.getElementById("pizzaOrders").appendChild(cln);
-             }
+             };
+
         </script>
     </div>
     <!-- END OF Part 2 -->
