@@ -98,21 +98,22 @@
             </table>
         </div>
         <script> 
-            let form = document.querySelectorAll('tr>td>input.form-control');
+            let form = document.querySelectorAll('tbody>tr>td>input.form-control');
             form.forEach(nenaam);  
 
             function nenaam (input){
                 input.addEventListener('keyup', enter)
             }
+
             function enter (e) {
                 if (e.keyCode === 13) {
                     check();}
-                    console.log("lol");
             }
+
             function check() {
-                let namev = document.getElementById("name").value;
-                let pizzav = document.getElementById("pizza").value;
-                let sizev = document.getElementById("size").value;
+                let namev = document.querySelector('tbody>tr:last-child>td:nth-child(1n)>input').value;
+                let pizzav = document.querySelector('tbody>tr:last-child>td:nth-child(2n)>input').value;
+                let sizev = document.querySelector('tbody>tr:last-child>td:nth-child(3n)>input').value;
                 if (namev.length > 0 && pizzav.length > 0 && sizev.length > 0 ) {
                    clone();
                 } else {
@@ -136,16 +137,28 @@
                     }
                 }
             };
+
              function clone() {
                 let form = document.getElementById("pizzaOrders");
                 let row = form.insertRow(-1);
                 let cell1 = row.insertCell(0);
                 let cell2 = row.insertCell(1);
                 let cell3 = row.insertCell(2);
+                let cell4 = row.insertCell(3);
                 cell1.innerHTML = '<input type="text"  class="form-control" placeholder="Fill in your name">';
                 cell2.innerHTML = '<input type="text"  class="form-control" placeholder="Fill in your pizza choice">';
                 cell3.innerHTML = '<input type="text"  class="form-control" placeholder="Fill in your chosen size">';
-             };
+                cell4.innerHTML = '<Button type="button" onclick="deleteRow()" class="btn btn-primary w-100">Remove this pizza</button>';
+
+                form = document.querySelectorAll('tbody>tr>td>input.form-control')
+                form.forEach(nenaam);  
+            };
+
+             function deleteRow() {
+                var td = event.target.parentNode; 
+                var tr = td.parentNode; 
+                tr.parentNode.removeChild(tr);
+            }
 
         </script>
     </div>
