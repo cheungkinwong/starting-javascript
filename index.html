@@ -88,17 +88,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr id="emptyRow">
-                    <td><input type="text" id="name" class="form-control" placeholder="Fill in your name"></td>
-                    <td><input type="text" id="pizza" class="form-control" placeholder="Fill in your pizza choice"></td>
-                    <td><input type="text" id="size" class="form-control" placeholder="Fill in your chosen size"></td>
-                    <td><input type="text" id="remarks" class="form-control" placeholder="Fill in your remarks"></td>
-                </tr>
+                    <tr id="emptyRow">
+                        <td><input type="text" id="name" class="form-control" placeholder="Fill in your name"></td>
+                        <td><input type="text" id="pizza" class="form-control" placeholder="Fill in your pizza choice"></td>
+                        <td><input type="text" id="size" class="form-control" placeholder="Fill in your chosen size"></td>
+                        <td><input type="text" id="remarks" class="form-control" placeholder="Fill in your remarks"></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
         <script> 
-            let form = document.querySelectorAll('tbody>tr>td>input.form-control');
+            let form = document.querySelectorAll('#pizzaOrders>tbody>tr>td>input.form-control');
             form.forEach(nenaam);  
 
             function nenaam (input){
@@ -111,9 +111,9 @@
             }
 
             function check() {
-                let namev = document.querySelector('tbody>tr:last-child>td:nth-child(1n)>input').value;
-                let pizzav = document.querySelector('tbody>tr:last-child>td:nth-child(2n)>input').value;
-                let sizev = document.querySelector('tbody>tr:last-child>td:nth-child(3n)>input').value;
+                let namev = document.querySelector('#pizzaOrders>tbody>tr:last-child>td:nth-child(1n)>input').value;
+                let pizzav = document.querySelector('#pizzaOrders>tbody>tr:last-child>td:nth-child(2n)>input').value;
+                let sizev = document.querySelector('#pizzaOrders>tbody>tr:last-child>td:nth-child(3n)>input').value;
                 if (namev.length > 0 && pizzav.length > 0 && sizev.length > 0 ) {
                    clone();
                 } else {
@@ -160,7 +160,6 @@
                 tr.parentNode.removeChild(tr);
             }
 
-
         </script>
     </div>
     <!-- END OF Part 2 -->
@@ -189,7 +188,20 @@
 
         </div>
         <script>
-            // Write your code here
+            document.getElementById("launchMe").addEventListener("click", launch);
+            function launch() {
+                let oldHolder = document.getElementById("listHolder");
+                let list = document.querySelectorAll("#listHolder>span");
+                list.forEach(checkValue);
+            }
+
+            function checkValue(span) {
+                let oldli = span;
+                let newli = document.createElement('li');
+                newli.innerHTML = oldli.innerHTML;
+                oldli.parentNode.replaceChild(newli, oldli);
+            }
+
         </script>
     </div>
     <!-- END OF Part 3 -->
