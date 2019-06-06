@@ -190,17 +190,23 @@
         <script>
             document.getElementById("launchMe").addEventListener("click", launch);
             function launch() {
-                let oldHolder = document.getElementById("listHolder");
                 let list = document.querySelectorAll("#listHolder>span");
                 list.forEach(checkValue);
             }
 
-            function checkValue(span) {
-                let oldli = span;
-                let newli = document.createElement('li');
-                newli.innerHTML = oldli.innerHTML;
-                oldli.parentNode.replaceChild(newli, oldli);
-            }
+            function checkValue(span, index , arr) {
+                if(index == arr.length - 1){
+                    let oldInput = span;
+                    let newInput = document.createElement('input');
+                    newInput.setAttribute("placeholder" , "Choose your final ingredient.");
+                    oldInput.parentNode.replaceChild(newInput, oldInput);
+                } else {
+                    let oldli = span;
+                    let newli = document.createElement('li');
+                    newli.innerHTML = oldli.innerHTML;
+                    oldli.parentNode.replaceChild(newli, oldli);
+                }
+            };
 
         </script>
     </div>
