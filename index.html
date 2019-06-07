@@ -200,6 +200,7 @@
                     let newInput = document.createElement('input');
                     newInput.setAttribute("placeholder" , "Choose your final ingredient.");
                     oldInput.parentNode.replaceChild(newInput, oldInput);
+                    newInput.addEventListener("blur", ingredient);
                 } else {
                     let oldli = span;
                     let newli = document.createElement('li');
@@ -207,6 +208,13 @@
                     oldli.parentNode.replaceChild(newli, oldli);
                 }
             };
+
+            function ingredient() {
+                let ingrli = document.querySelector('#listHolder>input');
+                let blurli = document.createElement('li');
+                blurli.innerHTML = ingrli.value;
+                ingrli.parentNode.replaceChild(blurli, ingrli);
+            }
 
         </script>
     </div>
