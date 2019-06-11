@@ -469,7 +469,32 @@
             <div id="moveAnimation" class="block"></div>
         </div>
         <script>
-            // Write your code here
+            let block = document.getElementById("moveAnimation");
+            let pos = 0;
+            moveleft();
+            function moveleft(){
+                let left = setInterval (function(){
+                    if (pos < 100) {
+                        pos += 1/4;
+                        block.style.left = pos + "%";
+                    } else {
+                        clearInterval(left);
+                        moveright();
+                    }
+                }, 5);
+            } 
+            function moveright(){
+                let right = setInterval (function(){
+                    if (pos > 0) {
+                    pos -= 1/10;
+                    block.style.left = pos + "%";
+                    } else {
+                        clearInterval(right);
+                        moveleft();
+                    }
+                }, 5);
+            }
+        
         </script>
     </div>
     <!-- END OF Part 5 -->
