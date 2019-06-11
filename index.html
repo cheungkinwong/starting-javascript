@@ -469,14 +469,14 @@
             <div id="moveAnimation" class="block"></div>
         </div>
         <script>
-            let block = document.getElementById("moveAnimation");
+            let blockmove = document.getElementById("moveAnimation");
             let pos = 0;
             moveleft();
             function moveleft(){
                 let left = setInterval (function(){
                     if (pos < 100) {
                         pos += 1/4;
-                        block.style.left = pos + "%";
+                        blockmove.style.left = pos + "%";
                     } else {
                         clearInterval(left);
                         moveright();
@@ -487,7 +487,7 @@
                 let right = setInterval (function(){
                     if (pos > 0) {
                     pos -= 1/10;
-                    block.style.left = pos + "%";
+                    blockmove.style.left = pos + "%";
                     } else {
                         clearInterval(right);
                         moveleft();
@@ -507,10 +507,16 @@
             <hr>
             <br>
 
-            <div id="followMouse" class="block"></div>
+            <div id="followMouse" class="block" style="pointer-events: none"></div>
         </div>
         <script>
-            // Write your code here
+            let blockfollow = document.getElementById("followMouse");
+                blockfollow.parentElement.addEventListener("mousemove", follow);
+
+            function follow(e) {
+                blockfollow.style.left = e.offsetX - (blockfollow.offsetWidth / 2) + "px";
+            }            
+
         </script>
     </div>
     <!-- END OF Part 6 -->
