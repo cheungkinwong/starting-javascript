@@ -118,23 +118,6 @@
                    clone();
                 } else {
                     Command: toastr["error"]("Please fill in all fields")
-                    toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                    }
                 }
             };
 
@@ -470,6 +453,7 @@
         </div>
         <script>
             let blockmove = document.getElementById("moveAnimation");
+            let blockleft = blockmove.offsetLeft;
             let pos = 0;
             moveleft();
             function moveleft(){
@@ -494,7 +478,7 @@
                     }
                 }, 5);
             }
-        
+
         </script>
     </div>
     <!-- END OF Part 5 -->
@@ -533,21 +517,72 @@
             <div id="target"></div>
         </div>
         <script>
-            let target = document.getElementById("target");
-            target.innerHTML = "<p>Enter your first name:</p>"
-            let button = document.createElement("button");
-            let input = document.createElement("input");
-            target.appendChild(input);
-            target.appendChild(button);
-            button.innerHTML = "Add Letter";
+            sliiiders("target");
+            function sliiiders(obj) {
+                let target = document.getElementById(obj);
+                target.innerHTML = "<p>Enter your first name:</p>"
+                
+                // input
+                let input = document.createElement("div");
+                input.addEventListener("click", start);
+                input.style.width = "20em";
+                input.style.height = "2em";
+                input.style.border = "1px solid black";
+                input.style.padding = "0.25em";
+                input.type = "text";
+                input.style.marginBottom = "1em";
+                target.appendChild(input);
+
+                //sliderbox
+
+                let sliderbox = document.createElement("div");
+                target.appendChild(sliderbox);
+
+                function start(){
+                    input.removeEventListener("click", start);
+                    addslider();
+                    addbutton();  
+                }
 
 
+                // button       
+                function addbutton() {
+                    let button = document.createElement("button");
+                    target.appendChild(button);
+                    button.style.display = "block";
+                    button.style.marginTop = "1em";
+                    button.style.marginBottom = "1em";
+                    button.innerHTML = "Add Letter";
+                    button.addEventListener("click", addslider);
+                }
+               
+                function addslider() {
+                    let box = document.createElement("div");
+                    let letter = document.createElement("label");
+                    let slider = document.createElement("input");
+                    let inputLetter = document.createElement("span");
 
+                    letter.innerHTML = "A ";
+                    letter.style.marginRight = '1em'
+                    letter.style.marginBottom = '0em'
 
-            // button
-            
-
-
+                    slider.type = "range";
+                    slider.min = 65;
+                    slider.max = 90;
+                    slider.value = 65;
+                    slider.addEventListener("input",  function moveSlider(){
+                        let Letter = String.fromCharCode(slider.value)
+                            letter.innerHTML = Letter;
+                            inputLetter.innerHTML = Letter;
+                    });
+                    input.appendChild(inputLetter);
+                    sliderbox.appendChild(box);
+                    box.appendChild(letter);
+                    box.appendChild(slider);
+                    console.log("lmao");
+                }
+            }
+        
         </script>
     </div>
     <!-- END OF Part 7 -->
@@ -563,7 +598,7 @@
             <div id="target2"></div>
         </div>
         <script>
-            // You can put at most one line here
+            sliiiders("target2");
         </script>
     </div>
     <!-- END OF Part 8 -->
